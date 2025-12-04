@@ -10,14 +10,36 @@ package projet;
  */
 public abstract class Article {
     protected String description; 
-    protected int prix_initial;
+    protected double prix_initial;
     protected int nb_exemplaire;
     
-    public Article(String description, int prix_initial, int nb_esxemplaire){
+    public Article(String description, double prix_initial, int nb_esxemplaire){
         this.description = description;
         this.prix_initial = prix_initial;
         this.nb_exemplaire = nb_esxemplaire;
     }
+    
+    public abstract String getNumero();
+    
+    public void ajouter(int qte) {
+        this.nb_exemplaire += qte;
+    }
+
+    public void retirer(int qte) {
+        if (this.nb_exemplaire >= qte) {
+            this.nb_exemplaire -= qte;
+        } else {
+            this.nb_exemplaire = 0;
+        }
+    }
+    
+    public boolean placerApres(Article a) {
+        if (this.getNumero().compareTo(a.getNumero()) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } 
     
     public String get_description(){
         return this.description;
@@ -27,7 +49,7 @@ public abstract class Article {
         this.description = description;
     }
     
-    public int get_prix_initial(){
+    public double get_prix_initial(){
         return this.prix_initial;
     }
     
@@ -36,15 +58,12 @@ public abstract class Article {
     }
     
     public int get_nb_exemplaire(){
-        return this.prix_initial;
+        return this.nb_exemplaire;
     }
     
     public void set_nb_exemplaire(int nb_exemplaire){
         this.nb_exemplaire = nb_exemplaire;
     }
-    
-    public abstract String getNumero();
-            
     
     @Override
     public String toString(){
