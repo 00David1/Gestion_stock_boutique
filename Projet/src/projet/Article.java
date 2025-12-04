@@ -12,13 +12,11 @@ public abstract class Article {
     protected String description; 
     protected int prix_initial;
     protected int nb_exemplaire;
-    protected String isbn;
     
-    public Article(String description, int prix_initial, int nb_esxemplaire, String isbn){
+    public Article(String description, int prix_initial, int nb_esxemplaire){
         this.description = description;
         this.prix_initial = prix_initial;
         this.nb_exemplaire = nb_esxemplaire;
-        this.isbn = isbn;
     }
     
     public String get_description(){
@@ -45,13 +43,11 @@ public abstract class Article {
         this.nb_exemplaire = nb_exemplaire;
     }
     
-    public String getIsbn(){
-        return this.isbn;
-    }
+    public abstract String getNumero();
             
     
     @Override
     public String toString(){
-        return description + "\n- Prix : " + prix_initial + "€\n- ISBN : " + isbn;
+        return description + "\n- Prix : " + prix_initial + "€\n- Numero : " + getNumero();
     }
 }

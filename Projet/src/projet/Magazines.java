@@ -15,14 +15,15 @@ public class Magazines extends Article{
     private String periodicite;
     private LocalDate datePublication;
     
-    public Magazines(String description, int prix_initial, int nb_exemplaire, String isbn, String issn, String periodicite, LocalDate datePublication){
-        super(description, prix_initial, nb_exemplaire, isbn);
+    public Magazines(String description, int prix_initial, int nb_exemplaire, String issn, String periodicite, LocalDate datePublication){
+        super(description, prix_initial, nb_exemplaire);
         this.issn = issn;
         this.periodicite = periodicite;
         this.datePublication = datePublication;
     }
     
-    public String getIssn() {
+    @Override
+    public String getNumero() {
         return this.issn;
     }
 
@@ -36,7 +37,7 @@ public class Magazines extends Article{
 
     // --- SETTERS ---
 
-    public void setIssn(String issn) {
+    public void setNumero(String issn) {
         this.issn = issn;
     }
 

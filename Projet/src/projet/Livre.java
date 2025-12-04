@@ -13,17 +13,17 @@ public class Livre extends Article{
     protected int nb_page;
     
     public Livre(String description, int prix_initial, int nb_exemplaire, String isbn, int nb_page){
-        super(description, prix_initial, nb_exemplaire, isbn);
+        super(description, prix_initial, nb_exemplaire);
         this.isbn = isbn;
         this.nb_page = nb_page;
     }
     
     @Override
-    public String getIsbn(){
+    public String getNumero(){
         return this.isbn;
     }
     
-    public void setIsbn(String isbn){
+    public void setNumero(String isbn){
         this.isbn = isbn;
     }
     

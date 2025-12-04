@@ -19,11 +19,58 @@ public class BonDepot {
     private int nbLignes;
     private LigneDepot[]lignes; 
     
-    public NonDepot(String telephone, int maxArticles){
+    public BonDepot(String telephone, int maxArticles){
         this.numeroBon = compteur++;
         this.telephone = telephone;
         this.dateDepot = LocalDate.now();
         this.lignes = new LigneDepot[maxArticles];
         this.nbLignes = 0;
+    }
+    
+    public void ajouterLigne(String numero, int qte) {
+        if (nbLignes < lignes.length) {
+            lignes[nbLignes] = new LigneDepot(numero, qte);
+            nbLignes++;
+        }
+    }
+    
+    public int getNumeroBon() {
+        return numeroBon;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public LocalDate getDateDepot() {
+        return dateDepot;
+    }
+
+    public int getNbLignes() {
+        return nbLignes;
+    }
+
+    public LigneDepot[] getLignes() {
+        return lignes;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setDateDepot(LocalDate dateDepot) {
+        this.dateDepot = dateDepot;
+    }
+
+    @Override
+    public String toString() {
+        String res = "Bon de dépôt n°" + numeroBon + " du " + dateDepot + "\n";
+        res += "Client : " + telephone + "\n";
+        res += "Articles déposés (" + nbLignes + ") :\n";
+        
+        for (int i = 0; i < nbLignes; i++) {
+            res += " - " + lignes[i].toString() + "\n";
+        }
+        return res;
     }
 }
