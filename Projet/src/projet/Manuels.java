@@ -12,7 +12,7 @@ public class Manuels extends Livre{
     private String matiere; 
     private String niveau; 
     
-    public Manuels(String description, int prix_initial, int nb_exemplaire, String isbn, int nb_page, String matiere, String niveau){
+    public Manuels(String description, double prix_initial, int nb_exemplaire, String isbn, int nb_page, String matiere, String niveau){
         super(description, prix_initial, nb_exemplaire, isbn, nb_page);
         this.matiere = matiere;
         this.niveau = niveau;

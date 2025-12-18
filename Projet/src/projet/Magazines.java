@@ -15,7 +15,7 @@ public class Magazines extends Article{
     private String periodicite;
     private LocalDate datePublication;
     
-    public Magazines(String description, int prix_initial, int nb_exemplaire, String issn, String periodicite, LocalDate datePublication){
+    public Magazines(String description, double prix_initial, int nb_exemplaire, String issn, String periodicite, LocalDate datePublication){
         super(description, prix_initial, nb_exemplaire);
         this.issn = issn;
         this.periodicite = periodicite;

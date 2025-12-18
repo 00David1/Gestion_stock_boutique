@@ -4,6 +4,8 @@
  */
 package projet;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author 33765
@@ -12,7 +14,7 @@ public class Livre extends Article{
     protected String isbn;
     protected int nb_page;
     
-    public Livre(String description, int prix_initial, int nb_exemplaire, String isbn, int nb_page){
+    public Livre(String description, double prix_initial, int nb_exemplaire, String isbn, int nb_page){
         super(description, prix_initial, nb_exemplaire);
         this.isbn = isbn;
         this.nb_page = nb_page;

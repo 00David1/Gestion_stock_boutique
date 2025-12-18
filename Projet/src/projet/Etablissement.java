@@ -18,10 +18,10 @@ public class Etablissement {
     private int nbDepots;
     
     // Constructeur
-    public Etablissement(String nom) {
+    public Etablissement(String nom, int maxArticles, int maxDepots) {
         this.nom = nom;
-        this.stock = new Article[1000]; 
-        this.archives = new BonDepot[500];
+        this.stock = new Article[maxArticles]; 
+        this.archives = new BonDepot[maxDepots];
         
         this.nbArticles = 0;
         this.nbDepots = 0;
@@ -66,12 +66,57 @@ public class Etablissement {
         return null;
     }
     
+    public void lister() {
+        if (nbArticles == 0) {
+            System.out.println("Aucun article en stock.");
+            return;
+        }
+
+        Article[] triParQuantite = new Article[nbArticles];
+        for (int i = 0; i < nbArticles; i++) {
+            triParQuantite[i] = stock[i];
+        }
+
+        for (int i = 0; i < nbArticles - 1; i++) {
+            for (int j = 0; j < nbArticles - 1 - i; j++) {
+                if (triParQuantite[j].getNbExemplaire() > triParQuantite[j + 1].getNbExemplaire()) {
+                    Article temp = triParQuantite[j];
+                    triParQuantite[j] = triParQuantite[j + 1];
+                    triParQuantite[j + 1] = temp;
+                }
+            }
+        }
+        System.out.println("--- LISTE DES ARTICLES (Triés par quantité croissante) ---");
+        for (int i = 0; i < nbArticles; i++) {
+            Article a = triParQuantite[i];
+            
+            // On affiche la description et le prix calculé (avec réductions)
+            System.out.println("--------------------------------");
+            System.out.println(a.toString()); // Affiche Description, ISBN/ISSN...
+            System.out.println("- Quantité : " + a.getNbExemplaire());
+            
+            // ICI C'EST IMPORTANT : On appelle calculerPrix() pour avoir le prix réduit
+            System.out.println("- PRIX ACTUEL : " + a.get_prix_initial() + " €");
+        }
+        System.out.println("--------------------------------");
+    }
+    
     public String getNom() { return nom; }
     
     @Override
     public String toString() {
-        return "Etablissement : " + nom + "\n" +
-               "Nombre d'articles en stock : " + nbArticles + "\n" +
-               "Nombre de bons de dépôt : " + nbDepots;
+        String res = "Etablissement : " + nom + "\n";
+        res += "\n--- ARTICLES EN STOCK (" + nbArticles + ") ---\n";
+        for (int i = 0; i < nbArticles; i++) {
+            res += stock[i].toString() + "\n"; 
+        }
+        
+        res += "\n--- BONS DE DÉPÔT (" + nbDepots + ") ---\n";
+        for (int i = 0; i < nbDepots; i++) {
+            if (archives[i] != null) {
+                res += archives[i].toString() + "\n";
+            }
+        }
+        return res;
     }
 }

@@ -57,11 +57,11 @@ public abstract class Article {
         this.prix_initial = prix_initial;
     }
     
-    public int get_nb_exemplaire(){
+    public int getNbExemplaire(){
         return this.nb_exemplaire;
     }
     
-    public void set_nb_exemplaire(int nb_exemplaire){
+    public void setNbExemplaire(int nb_exemplaire){
         this.nb_exemplaire = nb_exemplaire;
     }
     
